@@ -16,5 +16,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('students', StudentController::class);
+    Route::resource('students', StudentController::class); // Esto ya cubre todas las rutas para students
 });
+

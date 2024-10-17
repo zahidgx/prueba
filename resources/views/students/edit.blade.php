@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Edit student') }}
+            {{ __('Edit Student') }}
         </h2>
     </x-slot>
 
@@ -14,12 +14,17 @@
                     @method('PUT')
                     <div style="margin-bottom: 15px;">
                         <label for="name" style="display: block; margin-bottom: 5px;">Name</label>
-                        <input id="name" name="name" type="text" value="{{ old('name', $student->name) }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                        <input id="name" name="name" type="text" value="{{ old('name', $student->name) }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
                 
                     <div style="margin-bottom: 15px;">
-                        <label for="age" style="display: block; margin-bottom: 5px;">Age</label>
-                        <input id="age" name="age" type="number" value="{{ old('age', $student->age) }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                        <label for="precio" style="display: block; margin-bottom: 5px;">Price</label>
+                        <input id="precio" name="precio" type="text" value="{{ old('precio', $student->precio) }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="stock" style="display: block; margin-bottom: 5px;">Stock</label>
+                        <input id="stock" name="stock" type="number" value="{{ old('stock', $student->stock) }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
                 
                     <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Update</button>
@@ -30,3 +35,4 @@
         </div>
     </div>
 </x-app-layout>
+

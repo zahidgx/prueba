@@ -9,10 +9,9 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::all(); 
+        $students = Student::paginate(3); 
         return view('students.index', compact('students'));
     }
-    
 
     public function create()
     {
@@ -23,10 +22,11 @@ class StudentController extends Controller
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'age' => 'required|integer',
+        'precio' => 'required|numeric',
+        'stock' => 'required|integer',   
     ]);
 
-    Student::create($request->all()); // Método de creación masiva
+    Student::create($request->all()); 
 
     return redirect()->route('students.index')->with('success', 'Estudiante creado exitosamente.');
 }
@@ -38,7 +38,7 @@ class StudentController extends Controller
 
     public function edit(string $id)
 {
-    $student = Student::findOrFail($id); // Asegúrate de que sea findOrFail
+    $student = Student::findOrFail($id); 
     return view('students.edit', compact('student'));
 }
 
@@ -46,12 +46,14 @@ public function update(Request $request, string $id)
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'age' => 'required|integer',
+        'precio' => 'required|numeric',  
+        'stock' => 'required|integer',  
     ]);
 
-    $student = Student::findOrFail($id); // Asegúrate de que sea findOrFail
+    $student = Student::findOrFail($id);
     $student->name = $request->name;
-    $student->age = $request->age;
+    $student->precio = $request->precio; 
+    $student->stock = $request->stock;  
     $student->save();
 
     return redirect()->route('students.index')->with('success', 'Estudiante actualizado exitosamente.');
@@ -65,3 +67,5 @@ public function update(Request $request, string $id)
         return redirect()->route('students.index')->with('success', 'Estudiante eliminado exitosamente.');
     }
 }
+
+
