@@ -16,10 +16,11 @@
                     <thead style="background-color: #4CAF50; color: white;">
                         <tr>
                             <th style="padding: 12px; border: 1px solid #ddd;">ID</th>
-                            <th style="padding: 12px; border: 1px solid #ddd;">Name</th>
-                            <th style="padding: 12px; border: 1px solid #ddd;">Precio</th> <!-- Cambiado de Age a Precio -->
-                            <th style="padding: 12px; border: 1px solid #ddd;">Stock</th>  <!-- Nueva columna Stock -->
-                            <th style="padding: 12px; border: 1px solid #ddd;">Actions</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Nombre del producto</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Descripción</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Precio</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Stock</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,15 +28,12 @@
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->id }}</td>
                             <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->name }}</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->precio }}</td> <!-- Mostrar Precio -->
-                            <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->stock }}</td>  <!-- Mostrar Stock -->
+                            <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->descripcion }}</td> 
+                            <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->precio }}</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">{{ $student->stock }}</td>
                             <td style="padding: 12px; border: 1px solid #ddd;">
                                 <a href="{{ route('students.edit', $student->id) }}" style="color: #4CAF50; text-decoration: none;">Edit</a>
-                                <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
-                                </form>
+                                <button onclick="confirmDelete({{ $student->id }})" style="background-color: #f44336; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
                             </td>
                         </tr>
                         @endforeach
@@ -50,6 +48,9 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.css"/>
 
 <script>
     function confirmDelete(id) {
@@ -67,3 +68,6 @@
         });
     }
 </script>
+
+
+

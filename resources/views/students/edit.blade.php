@@ -12,13 +12,19 @@
                 <form method="POST" action="{{ route('students.update', $student->id) }}" style="max-width: 400px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
                     @csrf
                     @method('PUT')
+                    
                     <div style="margin-bottom: 15px;">
-                        <label for="name" style="display: block; margin-bottom: 5px;">Name</label>
+                        <label for="name" style="display: block; margin-bottom: 5px;">Nombre del producto</label>
                         <input id="name" name="name" type="text" value="{{ old('name', $student->name) }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="descripcion" style="display: block; margin-bottom: 5px;">Descripcion</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">{{ old('descripcion', $student->descripcion) }}</textarea>
                     </div>
                 
                     <div style="margin-bottom: 15px;">
-                        <label for="precio" style="display: block; margin-bottom: 5px;">Price</label>
+                        <label for="precio" style="display: block; margin-bottom: 5px;">Precio</label>
                         <input id="precio" name="precio" type="text" value="{{ old('precio', $student->precio) }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
 
@@ -35,4 +41,5 @@
         </div>
     </div>
 </x-app-layout>
+
 

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->integer('age')->after('name'); // Agrega la columna 'age' después de 'name'
+            $table->text('descripcion')->nullable(); // Agrega la columna descripcion
         });
     }
 
@@ -22,8 +22,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn('age'); // Elimina la columna 'age'
+            $table->dropColumn('descripcion'); // Elimina la columna descripcion si se revierte
         });
     }
 };
+
 

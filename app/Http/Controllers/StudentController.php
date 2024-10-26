@@ -19,17 +19,18 @@ class StudentController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'precio' => 'required|numeric',
-        'stock' => 'required|integer',   
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'descripcion' => 'nullable|string|max:1000', // Validación para descripción
+            'precio' => 'required|numeric',
+            'stock' => 'required|integer',   
+        ]);
 
-    Student::create($request->all()); 
+        Student::create($request->all()); 
 
-    return redirect()->route('students.index')->with('success', 'Estudiante creado exitosamente.');
-}
+        return redirect()->route('students.index')->with('success', 'Estudiante creado exitosamente.');
+    }
 
     public function show(string $id)
     {
@@ -37,28 +38,29 @@ class StudentController extends Controller
     }
 
     public function edit(string $id)
-{
-    $student = Student::findOrFail($id); 
-    return view('students.edit', compact('student'));
-}
+    {
+        $student = Student::findOrFail($id); 
+        return view('students.edit', compact('student'));
+    }
 
-public function update(Request $request, string $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'precio' => 'required|numeric',  
-        'stock' => 'required|integer',  
-    ]);
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'descripcion' => 'nullable|string|max:1000', // Validación para descripción
+            'precio' => 'required|numeric',  
+            'stock' => 'required|integer',  
+        ]);
 
-    $student = Student::findOrFail($id);
-    $student->name = $request->name;
-    $student->precio = $request->precio; 
-    $student->stock = $request->stock;  
-    $student->save();
+        $student = Student::findOrFail($id);
+        $student->name = $request->name;
+        $student->descripcion = $request->descripcion; // Actualizar descripción
+        $student->precio = $request->precio; 
+        $student->stock = $request->stock;  
+        $student->save();
 
-    return redirect()->route('students.index')->with('success', 'Estudiante actualizado exitosamente.');
-}
-
+        return redirect()->route('students.index')->with('success', 'Estudiante actualizado exitosamente.');
+    }
 
     public function destroy(string $id)
     {
@@ -67,5 +69,6 @@ public function update(Request $request, string $id)
         return redirect()->route('students.index')->with('success', 'Estudiante eliminado exitosamente.');
     }
 }
+
 
 
